@@ -1,0 +1,221 @@
+/* Imports */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+/* SIDENAV */
+
+.sidenav {
+  grid-area: sidenav;
+  align-self: start;
+  padding: 30px;
+  background: white;
+  border-radius: 4px;
+  margin: 30px;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+}
+
+.imagem-usuario {
+  border: 2px solid #e2e2e2;
+  display: block;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin: 10px auto;
+}
+
+.informacao-item {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.informacao-usuario li {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.informacao-usuario li + li {
+  border-top: 1px solid #afc7df;
+  width: 100%;
+}
+
+/* CONTEUDO */
+
+.content-header,
+.content-post {
+  margin: 30px;
+  padding: 30px;
+  background: white;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+}
+
+/* COMPONENT HEADER */
+
+textarea {
+  border: none;
+  resize: none;
+  min-width: 550px;
+  min-height: 100px;
+  font-size: 1.125rem;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea::placeholder {
+  font-size: 1.125rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.content-header {
+  grid-area: content-header;
+}
+
+.area-post {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.btn-publicar {
+  display: flex;
+  justify-content: right;
+}
+
+.btn-publicar a {
+  text-decoration: none;
+  background: #2e2c2c;
+  color: #969595;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.imagem-area-post {
+  border: 2px solid #e2e2e2;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background: #2e2c2c;
+  border-left: 4px solid #faf6ed;
+  border-right: 4px solid #faf6ed;
+}
+
+/* COMPONENT-POST */
+
+.section-header {
+  display: flex;
+}
+
+.postagem {
+  display: flex;
+}
+
+.nome-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.nome-data span {
+  margin-top: 2px;
+}
+
+.nome-usuario {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.data-postagem {
+  font-size: 13px;
+  color: rgb(75, 67, 67);
+}
+
+.conteudo-postagem {
+  display: flex;
+}
+
+.conteudo-postagem span {
+  max-width: 590px;
+  word-wrap: break-word;
+  padding: 15px;
+}
+
+.informacoes-postagem {
+  display: flex;
+  padding-top: 13px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botoes-postagem {
+  display: flex;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.botoes-postagem .img {
+  height: 25px;
+}
+
+.qtn-postagem {
+  display: flex;
+  gap: 50px;
+}
+
+.answer {
+  padding: 10px;
+}
+
+.textarea {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 15px;
+  margin-left: 5px;
+  margin-top: 20px;
+  min-height: 50px;
+}
+
+/* PROPAGANDA */
+
+.propaganda {
+  grid-area: propaganda;
+}
+
+/* Responsividade */
+
+@media (max-width: 1100px) {
+  .estrutura {
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "content-header"
+      "content-post";
+  }
+
+  .sidenav,
+  .content-header,
+  .content-post {
+    width: 650px;
+    margin: 30px auto;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .header .menu {
+    margin: 0 auto;
+  }
+}

@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+body,
+h1,
+p,
+span,
+footer,
+h2,
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica;
+  background: #fafbfc;
+}
+
+body::-webkit-scrollbar {
+  width: 18px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #2e2c2c;
+  border-left: 2px solid #faf6ed;
+  border-right: 2px solid #faf6ed;
+}
+
+.estrutura {
+  display: grid;
+  grid-template-columns: 340px minmax(300, 2fr) 150px;
+  grid-template-areas:
+    "header header header"
+    "sidenav content-header propaganda"
+    "sidenav content-post propaganda";
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-area: header;
+  align-items: center;
+  padding: 30px;
+  background: #2e2c2c;
+}
+
+.header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style: none;
+}
+
+.header li ~ li {
+  margin-left: 30px;
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.header nav a {
+  display: block;
+  text-decoration: none;
+  background: #383535;
+  padding: 10px;
+  color: #969595;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: 0.2s ease-in;
+}
+
+.header nav a:hover {
+  background: #252323;
+}
