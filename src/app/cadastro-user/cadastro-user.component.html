@@ -1,0 +1,31 @@
+<div class="form-user">
+  <div class="form-container">
+    <h1>Cadastro</h1>
+    <form action="#" class="form">
+      <label for="user">Usuário</label>
+      <input type="text" name="user" id="user" [(ngModel)]="user">
+      <label for="senha">Senha</label>
+      <input type="password" name="senha" id="senha" [(ngModel)]="senha">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" [(ngModel)]="email">
+      <div class="idade_telefone">
+        <div>
+          <label for="idade">Idade</label>
+          <input type="number" name="idade" id="idade" [(ngModel)]="idade">
+        </div>
+        <div>
+          <label for="telefone">Telefone</label>
+          <input type="tel" name="telefone" id="telefone" [(ngModel)]="telefone">
+        </div>
+      </div>
+      <div class="btn">
+        <a id="publicar" (click)="enviarCadastro();">Cadastrar</a>
+
+        <!-- <a href="#" >Cadastrar</a> -->
+      </div>
+      <div *ngFor="let resposta of retornoApi">
+        <span class={{resposta.class}}>{{resposta.message}}</span>
+      </div>
+    </form>
+  </div>
+</div>

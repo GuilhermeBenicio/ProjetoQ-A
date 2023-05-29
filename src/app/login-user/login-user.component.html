@@ -1,0 +1,15 @@
+<div class="form-user">
+  <div class="form-container">
+    <h1>Login</h1>
+    <form action="#" class="form">
+      <label for="user">Usuário</label>
+      <input [(ngModel)]="usuario.nome" type="text" name="senha" id="user">
+      <label for="senha">Senha</label>
+      <input [(ngModel)]="usuario.senha" type="password" name="senha" id="senha">
+      <div class="btn">
+        <a (click)="fazerLogin()">Entrar</a>
+        <a>Cadastrar</a>
+      </div>
+    </form>
+  </div>
+</div>

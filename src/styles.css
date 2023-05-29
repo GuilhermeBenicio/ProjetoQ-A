@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+
 body,
 h1,
 p,
@@ -12,28 +14,34 @@ a {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
-  font-family: Helvetica;
-  background: #fafbfc;
+  font-family: "Poppins", sans-serif;
+  background: #18191a;
 }
 
-body::-webkit-scrollbar {
-  width: 18px;
+::-webkit-scrollbar {
+  width: 4px;
+  max-height: 4px;
+  border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb {
-  background: #2e2c2c;
-  border-left: 2px solid #faf6ed;
-  border-right: 2px solid #faf6ed;
+::-webkit-scrollbar-thumb {
+  background: #7a65e9;
 }
 
-.estrutura {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 340px minmax(300, 2fr) 150px;
+  grid-template-columns: 1fr 2fr;
+  box-sizing: border-box;
   grid-template-areas:
-    "header header header"
-    "sidenav content-header propaganda"
-    "sidenav content-post propaganda";
+    "sidenav content-header"
+    "sidenav content-post";
 }
 
 .header {
@@ -42,7 +50,7 @@ body::-webkit-scrollbar-thumb {
   grid-area: header;
   align-items: center;
   padding: 30px;
-  background: #2e2c2c;
+  background: #000;
 }
 
 .header nav ul {
@@ -67,14 +75,14 @@ li {
 .header nav a {
   display: block;
   text-decoration: none;
-  background: #383535;
+  background: #7a65e9;
   padding: 10px;
-  color: #969595;
+  color: white;
   font-weight: bold;
   border-radius: 4px;
   transition: 0.2s ease-in;
 }
 
 .header nav a:hover {
-  background: #252323;
+  background: #5d43df;
 }

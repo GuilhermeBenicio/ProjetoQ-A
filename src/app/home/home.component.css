@@ -1,0 +1,260 @@
+/* Imports */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+/* SIDENAV */
+
+.sidenav {
+  grid-area: sidenav;
+  align-self: start;
+  padding: 30px;
+  background: #2e2c2c;
+  border-radius: 4px;
+  margin: 30px;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+}
+
+.imagem-usuario {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to right, purple, darkorchid) border-box;
+  border: 4px solid transparent;
+  display: block;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin: 10px auto;
+}
+
+.informacao-item {
+  margin-right: 4px;
+  color: white;
+}
+
+.paragrafo {
+  color: white;
+}
+
+.informacao-usuario li {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.informacao-usuario li + li {
+  border-top: 1px solid #262729;
+  width: 100%;
+}
+
+.informacao-item::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #7a65e9;
+}
+
+.textwhite {
+  color: white;
+}
+
+/* CONTEUDO */
+
+.content-header,
+.content-post {
+  margin: 30px;
+  padding: 30px;
+  background: #2e2c2c;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+}
+
+/* COMPONENT HEADER */
+
+textarea {
+  color: #fff;
+  border: none;
+  resize: none;
+  min-width: 55%;
+  min-height: 100px;
+  font-size: 1.125rem;
+  background: #2e2c2c;
+  scrollbar-color: #7a65e9;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea::placeholder {
+  font-size: 1.125rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.content-header {
+  grid-area: content-header;
+}
+
+.area-post {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.btn-publicar {
+  display: flex;
+  justify-content: right;
+}
+
+.btn-publicar a {
+  text-decoration: none;
+  background: #7a65e9;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.btn-publicar a:hover {
+  background: #5d43df;
+}
+
+.imagem-area-post {
+  border: 2px solid #e2e2e2;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background: #2e2c2c;
+  border-left: 4px solid #faf6ed;
+  border-right: 4px solid #faf6ed;
+}
+
+/* COMPONENT-POST */
+
+.section-header {
+  display: flex;
+}
+
+.postagem {
+  display: flex;
+}
+
+.nome-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.nome-data span {
+  margin-top: 2px;
+}
+
+.nome-usuario {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.data-postagem {
+  font-size: 13px;
+  color: #7a65e9;
+}
+
+.conteudo-postagem {
+  font-size: 14px;
+  display: flex;
+}
+
+.comentario,
+.curtidas {
+  font-size: 14px;
+}
+
+.conteudo-postagem span {
+  max-width: 590px;
+  word-wrap: break-word;
+  padding: 15px;
+}
+
+.informacoes-postagem {
+  display: flex;
+  padding-top: 13px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botoes-postagem {
+  display: flex;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.botoes-postagem .img {
+  height: 25px;
+}
+
+.qtn-postagem {
+  display: flex;
+  gap: 50px;
+}
+
+.answer {
+  padding: 10px;
+}
+
+.textarea {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 15px;
+  margin-left: 5px;
+  margin-top: 20px;
+  min-height: 50px;
+}
+
+/* PROPAGANDA */
+
+.propaganda {
+  grid-area: propaganda;
+}
+
+/* Responsividade */
+
+/* @media (max-width: 1100px) {
+  .estrutura {
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "content-header"
+      "content-post";
+  }
+
+  .sidenav,
+  .content-header,
+  .content-post {
+    width: 650px;
+    margin: 30px auto;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .header .menu {
+    margin: 0 auto;
+  }
+} */
