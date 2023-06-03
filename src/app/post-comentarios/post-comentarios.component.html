@@ -1,0 +1,51 @@
+<header class="header">
+  <span class="logo">Blog Posts</span>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Postagens Gerais</a></li>
+      <li><a href="#">Mais sobre</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+
+  <main class="main">
+    <div class="content-header">
+      <form action="#">
+        <div class="area-post">
+          <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
+          <p class="textwhite">{{postContent.pergunta}}</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="content-post" *ngFor="let resposta of respostas">
+      <section class="section-header">
+        <div class="postagem">
+          <img [src]="resposta.imgUserAnswer" alt="Foto de perfil" class="imagem-area-post">
+          <div class="nome-data">
+            <span class="nome-usuario textwhite">{{resposta.usuario}}</span>
+            <span class="data-postagem">{{resposta.criadoEm}}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="conteudo-postagem">
+          <span class="textwhite">{{resposta.pergunta}}</span>
+        </div>
+
+        <div class="informacoes-postagem">
+          <div class="botoes-postagem">
+            <img src="../assets/img/like.svg" alt="like" class="img">
+          </div>
+        </div>
+        <div class="answer">
+          <p class='textwhite'>{{resposta.respostaTexto}}</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

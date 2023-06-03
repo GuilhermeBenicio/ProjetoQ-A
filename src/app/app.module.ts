@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { HomeComponent } from './home/home.component';
 import { CadastroUserComponent } from './cadastro-user/cadastro-user.component';
+import { PostComentariosComponent } from './post-comentarios/post-comentarios.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CadastroUserComponent } from './cadastro-user/cadastro-user.component';
     LoginUserComponent,
     HomeComponent,
     CadastroUserComponent,
+    PostComentariosComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [AuthService],

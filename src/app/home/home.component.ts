@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../login-user/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,11 @@ export class HomeComponent {
   public pergunta: string = '';
   public posts: any = [];
 
-  constructor(private http: HttpClient, private authservice: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authservice: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const dadosUsuario = this.authservice.getUserInfo();
@@ -64,24 +69,5 @@ export class HomeComponent {
           this.posts[key] = item;
         }
       });
-  }
-
-  enviarPost() {
-    let userId = '64739075d4980397a6f1c091';
-    this.http
-      .post(`http://localhost:3000/post/create/${userId}`, {
-        pergunta: this.pergunta,
-        tags: ['MAIRO', 'BAIRRO'],
-      })
-      .subscribe(
-        (data: any) => {
-          for (const [key, item] of Object.entries(data)) {
-            this.posts[key] = item;
-          }
-        },
-        (err) => {
-          console.log(err.error.message);
-        }
-      );
   }
 }

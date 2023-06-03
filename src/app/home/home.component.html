@@ -4,7 +4,7 @@
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#">Postagens Gerais</a></li>
-      <li><a href="#">Mais sobre</a></li>
+      <li><a href="#" routerLink="/comentarios">Comentarios</a></li>
     </ul>
   </nav>
 </header>
@@ -37,9 +37,7 @@
     <div class="content-header">
       <form action="#">
         <div class="area-post">
-          <div class="imagem-area-post">
-            <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
-          </div>
+          <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
           <textarea name="" id="" placeholder="Escreva aqui seu post" row="200"></textarea>
         </div>
         <div class="btn-publicar">
@@ -49,6 +47,7 @@
     </div>
 
     <div class="content-post" *ngFor="let post of posts">
+      <img src="../../assets/img/cruz.png" alt="excluir" width="35" class="excluir">
       <section class="section-header">
         <div class="postagem">
           <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
@@ -70,6 +69,7 @@
           </div>
 
           <div class="qtn-postagem">
+            <a href="#" class="comentario" routerLink="/comentarios/{{post._id}}">Comentarios</a>
             <div class="comentario textwhite"> 131313 Comentarios</div>
             <div class="curtidas textwhite"> 323223 Curtidas</div>
           </div>
@@ -77,7 +77,7 @@
 
         <div class="answer">
           <form>
-            <textarea class="textarea" name="text-area-answer" placeholder="Escreva seu comentário"></textarea>
+            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário"></textarea>
             <div class="btn-publicar">
               <a href="#">Comentar</a>
             </div>
