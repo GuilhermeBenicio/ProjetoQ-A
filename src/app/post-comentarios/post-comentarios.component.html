@@ -33,6 +33,7 @@
       </section>
 
       <section class="main-section">
+        <img src="../../assets/img/cruz.png" alt="excluir" width="35" class="excluir" (click)="deleteReply(resposta._id)">
         <div class="conteudo-postagem">
           <span class="textwhite">{{resposta.pergunta}}</span>
         </div>
@@ -46,6 +47,10 @@
           <p class='textwhite'>{{resposta.respostaTexto}}</p>
         </div>
       </section>
+    </div>
+
+    <div class="content-post" *ngIf="errorMsg.length > 0">
+      <p class="textwhite">{{errorMsg}}</p>
     </div>
   </main>
 </div>

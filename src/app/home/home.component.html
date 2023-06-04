@@ -38,16 +38,16 @@
       <form action="#">
         <div class="area-post">
           <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
-          <textarea name="" id="" placeholder="Escreva aqui seu post" row="200"></textarea>
+          <textarea name="postagem" id="" placeholder="Escreva aqui seu post" row="200" [(ngModel)]="postTxt" required="true"></textarea>
         </div>
-        <div class="btn-publicar">
+        <div class="btn-publicar" (click)="createPost()">
           <a>Publicar</a>
         </div>
       </form>
     </div>
 
     <div class="content-post" *ngFor="let post of posts">
-      <img src="../../assets/img/cruz.png" alt="excluir" width="35" class="excluir">
+      <img src="../../assets/img/cruz.png" alt="excluir" width="35" class="excluir" (click)="deletePost(post._id)">
       <section class="section-header">
         <div class="postagem">
           <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
@@ -60,7 +60,7 @@
 
       <section class="main-section">
         <div class="conteudo-postagem">
-          <span class="textwhite">{{post.pergunta}}</span>
+          <span class="textwhite pergunta">{{post.pergunta}}</span>
         </div>
 
         <div class="informacoes-postagem">
@@ -69,21 +69,24 @@
           </div>
 
           <div class="qtn-postagem">
-            <a href="#" class="comentario" routerLink="/comentarios/{{post._id}}">Comentarios</a>
-            <div class="comentario textwhite"> 131313 Comentarios</div>
+            <a href="#" class="comentario textwhite" routerLink="/comentarios/{{post._id}}">Comentarios</a>
             <div class="curtidas textwhite"> 323223 Curtidas</div>
           </div>
         </div>
 
         <div class="answer">
           <form>
-            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário"></textarea>
-            <div class="btn-publicar">
-              <a href="#">Comentar</a>
+            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt"></textarea>
+            <div class="btn-publicar" (click)="createReply(post._id)">
+              <a>Comentar</a>
             </div>
           </form>
         </div>
       </section>
+    </div>
+
+    <div class="content-post" *ngIf="errorMsg.length > 0">
+      <p class="textwhite">{{errorMsg}}</p>
     </div>
   </main>
 </div>

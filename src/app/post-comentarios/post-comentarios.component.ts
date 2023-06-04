@@ -24,6 +24,7 @@ export class PostComentariosComponent {
     criadoEm: new Date(),
     atualizadoEm: new Date(),
   };
+  errorMsg: string = '';
   userResponse: User = {
     usuario: '',
     senha: '',
@@ -65,26 +66,28 @@ export class PostComentariosComponent {
   }
 
   getResposta() {
-    const dadosUsuario = this.authservice.getUserInfo();
-    let id = '';
-    for (const [key, item] of Object.entries(dadosUsuario)) {
-      id = item._id;
-    }
-
+    this.respostas = [];
     this.http
       .get(`http://localhost:3000/reply/list/${this.postID}`)
       .subscribe((data: any) => {
+        if (data.length == 0) {
+          this.errorMsg = 'Não há respostas nesta publicação.';
+        } else {
+          this.errorMsg = '';
+        }
+
         for (const [key, item] of Object.entries(data)) {
           this.respostas[key] = item;
+          setTimeout(() => {
+            this.respostas[key]['imgUserAnswer'] = this.userResponse.urlImg;
+            console.log(this.respostas);
+          }, 200);
+
+          this.getUserAnswerInfo(this.respostas[key].usuario);
 
           this.respostas[key]['criadoEm'] = this.formatDate(
             this.respostas[key]['criadoEm'].toString()
           );
-
-          this.getUserAnswerInfo(this.respostas[key].usuario);
-          setTimeout(() => {
-            this.respostas[key]['imgUserAnswer'] = this.userResponse.urlImg;
-          }, 200);
         }
       });
   }
@@ -113,5 +116,13 @@ export class PostComentariosComponent {
     setTimeout(() => {
       this.userResponse = userResponse;
     }, 200);
+  }
+
+  deleteReply(replyId: string) {
+    this.http
+      .delete(`http://localhost:3000/reply/delete/${replyId}`)
+      .subscribe((data: any) => {
+        this.getResposta();
+      });
   }
 }
