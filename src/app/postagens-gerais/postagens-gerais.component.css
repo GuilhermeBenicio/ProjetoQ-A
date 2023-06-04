@@ -25,6 +25,13 @@
   -webkit-backdrop-filter: blur(4.5px);
 }
 
+.content-post .excluir {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  cursor: pointer;
+}
+
 /* COMPONENT HEADER */
 
 textarea {
@@ -60,6 +67,28 @@ textarea::placeholder {
   display: flex;
   align-items: center;
   gap: 25px;
+}
+
+.btn-publicar {
+  display: flex;
+  justify-content: right;
+}
+
+.btn-publicar a {
+  text-decoration: none;
+  background: #7a65e9;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.btn-publicar a:hover {
+  background: #5d43df;
 }
 
 .imagem-area-post {
@@ -127,13 +156,7 @@ textarea::placeholder {
   max-width: 590px;
   word-wrap: break-word;
   padding: 15px;
-}
-
-.main-section .excluir {
-  position: absolute;
-  top: 10px;
-  right: 30px;
-  cursor: pointer;
+  line-height: 1.6;
 }
 
 .informacoes-postagem {
@@ -151,6 +174,11 @@ textarea::placeholder {
 
 .botoes-postagem .img {
   height: 25px;
+}
+
+.qtn-postagem {
+  display: flex;
+  gap: 50px;
 }
 
 .answer {

@@ -10,6 +10,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { HomeComponent } from './home/home.component';
 import { CadastroUserComponent } from './cadastro-user/cadastro-user.component';
 import { PostComentariosComponent } from './post-comentarios/post-comentarios.component';
+import { PostagensGeraisComponent } from './postagens-gerais/postagens-gerais.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PostComentariosComponent } from './post-comentarios/post-comentarios.co
     HomeComponent,
     CadastroUserComponent,
     PostComentariosComponent,
+    PostagensGeraisComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [AuthService],

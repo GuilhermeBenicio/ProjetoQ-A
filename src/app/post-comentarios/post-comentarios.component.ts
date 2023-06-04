@@ -17,13 +17,14 @@ export class PostComentariosComponent {
   personPhone: string = '';
   personEmail: string = '';
   postID: string = '';
-  postContent: PostQuestion = {
+  /* postContent: PostQuestion = {
     pergunta: '',
     respostas: [],
     tags: [],
     criadoEm: new Date(),
     atualizadoEm: new Date(),
-  };
+  }; */
+  postContent: any = [];
   errorMsg: string = '';
   userResponse: User = {
     usuario: '',
@@ -47,7 +48,7 @@ export class PostComentariosComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.postID = params.get('id') || ''; // 'id' é o nome do parâmetro na URL
+      this.postID = params.get('id') || '';
     });
 
     const dadosUsuario = this.authservice.getUserInfo();
@@ -65,11 +66,27 @@ export class PostComentariosComponent {
     this.getResposta();
   }
 
+  setPostContent() {
+    let post: any;
+    this.http
+      .get(`http://localhost:3000/user/benicioo`)
+      .subscribe((data: any) => {
+        for (const [key, item] of Object.entries(data)) {
+          post = item;
+        }
+      });
+
+    setTimeout(() => {
+      this.postContent = post;
+    }, 200);
+  }
+
   getResposta() {
     this.respostas = [];
     this.http
       .get(`http://localhost:3000/reply/list/${this.postID}`)
       .subscribe((data: any) => {
+        console.log(data);
         if (data.length == 0) {
           this.errorMsg = 'Não há respostas nesta publicação.';
         } else {
@@ -80,7 +97,6 @@ export class PostComentariosComponent {
           this.respostas[key] = item;
           setTimeout(() => {
             this.respostas[key]['imgUserAnswer'] = this.userResponse.urlImg;
-            console.log(this.respostas);
           }, 200);
 
           this.getUserAnswerInfo(this.respostas[key].usuario);

@@ -1,0 +1,56 @@
+<header class="header">
+  <span class="logo">Blog Posts</span>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Postagens Gerais</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+
+  <main class="main">
+    <div class="content-post" *ngFor="let post of posts">
+      <section class="section-header">
+        <div class="postagem">
+          <img [src]="post.urlImg" alt="Foto de perfil" class="imagem-area-post">
+          <div class="nome-data">
+            <span class="nome-usuario textwhite">{{post.usuario}}</span>
+            <span class="data-postagem">{{post.criadoEm}}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="conteudo-postagem">
+          <span class="textwhite pergunta">{{post['post'].pergunta}}</span>
+        </div>
+
+        <div class="informacoes-postagem">
+          <div class="botoes-postagem">
+            <img src="../assets/img/like.svg" alt="like" class="img">
+          </div>
+
+          <div class="qtn-postagem">
+            <a href="#" class="comentario textwhite" routerLink="/comentarios/{{post['post']._id}}">Comentarios</a>
+            <div class="curtidas textwhite"> 323223 Curtidas</div>
+          </div>
+        </div>
+
+        <div class="answer">
+          <form>
+            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt"></textarea>
+            <div class="btn-publicar" (click)="createReply(post['post']._id)">
+              <a>Comentar</a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <div class="content-post" *ngIf="errorMsg.length > 0">
+      <p class="textwhite">{{errorMsg}}</p>
+    </div>
+  </main>
+</div>
