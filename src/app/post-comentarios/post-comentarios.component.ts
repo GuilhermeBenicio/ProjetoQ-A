@@ -70,14 +70,17 @@ export class PostComentariosComponent {
 
         for (const [key, item] of Object.entries(data)) {
           this.respostas[key] = item;
-          this.getUserAnswerInfo(this.respostas[key].usuario);
 
-          setTimeout(() => {
-            this.respostas[key]['imgUserAnswer'] = this.userResponse.urlImg;
-          }, 200);
-          this.respostas[key]['criadoEm'] = this.formatDate(
-            this.respostas[key]['criadoEm'].toString()
-          );
+          this.getUserAnswerInfo(this.respostas[key].usuario)
+            .then((userResponse: any) => {
+              this.respostas[key]['imgUserAnswer'] = userResponse.urlImg;
+              this.respostas[key]['criadoEm'] = this.formatDate(
+                this.respostas[key]['criadoEm'].toString()
+              );
+            })
+            .catch((error: any) => {
+              console.error(error);
+            });
         }
       });
   }
@@ -108,18 +111,19 @@ export class PostComentariosComponent {
     }
   }
 
-  getUserAnswerInfo(username: string) {
-    let userResponse: any;
-    this.http
-      .get(`http://localhost:3000/user/${username}`)
-      .subscribe((data: any) => {
-        for (const [key, item] of Object.entries(data)) {
-          userResponse = item;
+  getUserAnswerInfo(username: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`http://localhost:3000/user/${username}`).subscribe(
+        (data: any) => {
+          for (const [key, item] of Object.entries(data)) {
+            resolve(item);
+          }
+        },
+        (error: any) => {
+          reject(error);
         }
-      });
-    setTimeout(() => {
-      this.userResponse = userResponse;
-    }, 200);
+      );
+    });
   }
 
   deleteReply(replyId: string) {
