@@ -100,6 +100,10 @@ textarea {
   scrollbar-color: #7a65e9;
 }
 
+.padding {
+  padding: 10px;
+}
+
 .textarea-borda {
   border: 1px solid #a08ff3 !important;
 }
@@ -139,6 +143,10 @@ textarea::placeholder {
   display: inline-block;
   cursor: pointer;
   transition: 0.3s all;
+}
+
+.btn-publicar a + a {
+  margin-left: 10px;
 }
 
 .btn-publicar a:hover {
@@ -201,8 +209,7 @@ textarea::placeholder {
   border-bottom: 1px solid #262729;
 }
 
-.comentario,
-.curtidas {
+.comentario {
   font-size: 14px;
 }
 
@@ -230,9 +237,13 @@ textarea::placeholder {
   height: 25px;
 }
 
+.informacoes-postagem {
+  position: relative;
+}
+
 .qtn-postagem {
-  display: flex;
-  gap: 50px;
+  position: absolute;
+  right: 0;
 }
 
 .answer {
@@ -246,6 +257,12 @@ textarea::placeholder {
   margin-left: 5px;
   margin-top: 20px;
   min-height: 50px;
+}
+
+.textarea-edit {
+  width: 100%;
+  display: block;
+  margin-top: 10px;
 }
 
 /* PROPAGANDA */

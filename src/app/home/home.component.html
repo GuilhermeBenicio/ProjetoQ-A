@@ -48,8 +48,8 @@
 
     <div class="content-post" *ngFor="let post of posts">
       <div class="btn-excluir-editar">
-        <img src="../../assets/img/excluir.svg" alt="excluir" width="35" (click)="deletePost(post._id)">
-        <img src="../../assets/img/editar.svg" alt="excluir" width="32">
+        <div><img src="../../assets/img/excluir.svg" alt="excluir" width="35" (click)="deletePost(post._id)"></div>
+        <div (click)="setIsToEdit(post._id)"><img src="../../assets/img/editar.svg" alt="editar" width="32"></div>
       </div>
       <section class="section-header">
         <div class="postagem">
@@ -63,21 +63,24 @@
 
       <section class="main-section">
         <div class="conteudo-postagem">
-          <span class="textwhite pergunta">{{post.pergunta}}</span>
+          <span *ngIf="!post.isToEdit" class="textwhite pergunta">{{post.pergunta}}</span>
+          <div *ngIf="post.isToEdit" class="textarea-edit">
+            <textarea name="postagem" class="padding textarea-borda" id="" row="200" [(ngModel)]="EditPostTxt" required="true">{{post.pergunta}}</textarea>
+            <div class="btn-publicar">
+              <a (click)="editPost(post._id)">Editar</a>
+              <a (click)="setIsToCancel(post._id)">Cancelar</a>
+            </div>
+
+          </div>
         </div>
 
-        <div class="informacoes-postagem">
-          <div class="botoes-postagem">
-            <img src="../assets/img/like.svg" alt="like" class="img">
-          </div>
-
+        <div class="informacoes-postagem" *ngIf="!post.isToEdit">
           <div class="qtn-postagem">
             <a href="#" class="comentario textwhite" routerLink="/comentarios/{{post._id}}">Comentarios</a>
-            <div class="curtidas textwhite"> 323223 Curtidas</div>
           </div>
         </div>
 
-        <div class="answer">
+        <div class="answer" *ngIf="!post.isToEdit">
           <form>
             <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt"></textarea>
             <div class="btn-publicar" (click)="createReply(post._id)">

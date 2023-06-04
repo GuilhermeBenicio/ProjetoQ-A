@@ -18,6 +18,8 @@ export class HomeComponent {
   errorMsg: string = '';
   postTxt: string = '';
   replyTxt: string = '';
+  isToEdit: Boolean = false;
+  EditPostTxt: string = '';
 
   public pergunta: string = '';
   public posts: any = [];
@@ -148,6 +150,44 @@ export class HomeComponent {
       .subscribe((data: any) => {
         this.replyTxt = '';
         this.getUserPosts();
+      });
+  }
+
+  setIsToEdit(postId: string) {
+    this.posts.forEach((element: any, index: any) => {
+      if (element._id == postId && element.isToEdit == false) {
+        this.posts[index]['isToEdit'] = true;
+      } else {
+        this.posts[index]['isToEdit'] = false;
+      }
+    });
+    console.log(this.posts);
+  }
+
+  setIsToCancel(postId: string) {
+    this.posts.forEach((element: any, index: any) => {
+      if (element._id == postId) {
+        this.posts[index]['isToEdit'] = false;
+      }
+    });
+    console.log(this.posts);
+  }
+
+  editPost(postId: string) {
+    let body = {
+      pergunta: this.EditPostTxt,
+    };
+
+    this.http
+      .put(
+        `http://localhost:3000/post/update/posts/${postId}`,
+        JSON.parse(JSON.stringify(body))
+      )
+      .subscribe((data: any) => {
+        console.log(data);
+        this.EditPostTxt = '';
+        this.getUserPosts();
+        this.setIsToEdit(postId);
       });
   }
 }
