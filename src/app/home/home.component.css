@@ -244,6 +244,7 @@ textarea::placeholder {
 .qtn-postagem {
   position: absolute;
   right: 0;
+  top: 8px;
 }
 
 .answer {

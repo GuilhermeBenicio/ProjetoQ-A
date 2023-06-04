@@ -9,13 +9,17 @@
 </header>
 
 <div class="container">
-
   <main class="main">
     <div class="content-header">
       <form action="#">
         <div class="area-post">
-          <img [src]="postContent.urlImg" alt="Foto de perfil" class="imagem-area-post">
-          <p class="textwhite">{{postContent['posts'].pergunta}}</p>
+          <img [src]="postContent.urlImg" alt="Foto de perfil" class="imagem-area-post" />
+          <div class="nome-data">
+            <span class="nome-usuario textwhite">{{ postContent.usuario }}</span>
+            <span class="data-postagem">21/05/2023</span>
+            <p class="textwhite">{{ postContent["posts"].pergunta }}</p>
+          </div>
+
         </div>
       </form>
     </div>
@@ -23,33 +27,45 @@
     <div class="content-post" *ngFor="let resposta of respostas">
       <section class="section-header">
         <div class="postagem">
-          <img [src]="resposta.imgUserAnswer" alt="Foto de perfil" class="imagem-area-post">
+          <img [src]="resposta.imgUserAnswer" alt="Foto de perfil" class="imagem-area-post" />
           <div class="nome-data">
-            <span class="nome-usuario textwhite">{{resposta.usuario}}</span>
-            <span class="data-postagem">{{resposta.criadoEm}}</span>
+            <span class="nome-usuario textwhite">{{ resposta.usuario }}</span>
+            <span class="data-postagem">{{ resposta.criadoEm }}</span>
           </div>
         </div>
       </section>
 
       <section class="main-section">
-        <img src="../../assets/img/cruz.png" alt="excluir" width="35" class="excluir" (click)="deleteReply(resposta._id)">
-        <div class="conteudo-postagem">
-          <span class="textwhite">{{resposta.pergunta}}</span>
-        </div>
-
-        <div class="informacoes-postagem">
-          <div class="botoes-postagem">
-            <img src="../assets/img/like.svg" alt="like" class="img">
+        <div class="btn-excluir-editar" *ngIf="(resposta.usuario == postContent.usuario && resposta.usuario == currentUser) || (resposta.usuario == currentUser)">
+          <div>
+            <img src="../../assets/img/excluir.svg" alt="excluir" width="35" (click)="deleteReply(resposta._id)" />
+          </div>
+          <div (click)="setIsToEdit(resposta._id)">
+            <img src="../../assets/img/editar.svg" alt="editar" width="32" />
           </div>
         </div>
-        <div class="answer">
-          <p class='textwhite'>{{resposta.respostaTexto}}</p>
+
+        <div *ngIf="resposta.isToEdit" class="textarea-edit">
+          <textarea name="postagem" class="padding textarea-borda" id="" row="200" [(ngModel)]="EditReplyTxt" required="true"></textarea>
+          <div class="btn-publicar">
+            <a (click)="editReply(resposta._id)">Editar</a>
+            <a (click)="setIsToCancel(resposta._id)">Cancelar</a>
+          </div>
+        </div>
+
+        <div class="conteudo-postagem">
+          <span class="textwhite">{{ resposta.pergunta }}</span>
+        </div>
+
+        <div class="informacoes-postagem"></div>
+        <div class="answer" *ngIf="!resposta.isToEdit">
+          <p class="textwhite">{{ resposta.respostaTexto }}</p>
         </div>
       </section>
     </div>
 
     <div class="content-post" *ngIf="errorMsg.length > 0">
-      <p class="textwhite">{{errorMsg}}</p>
+      <p class="textwhite">{{ errorMsg }}</p>
     </div>
   </main>
 </div>

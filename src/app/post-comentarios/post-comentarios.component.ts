@@ -25,6 +25,7 @@ export class PostComentariosComponent {
     atualizadoEm: new Date(),
   }; */
   postContent: any = [];
+  EditReplyTxt: string = '';
   errorMsg: string = '';
   userResponse: User = {
     usuario: '',
@@ -36,6 +37,7 @@ export class PostComentariosComponent {
     posts: [],
     criadoEm: new Date(),
   };
+  currentUser: string = '';
 
   public pergunta: string = '';
   public respostas: any = [];
@@ -47,14 +49,17 @@ export class PostComentariosComponent {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    const dadosUsuario = this.authservice.getUserInfo();
+    for (const [key, item] of Object.entries(dadosUsuario)) {
+      this.currentUser = item.usuario;
+    }
+    console.log(this.currentUser);
     this.route.paramMap.subscribe((params) => {
       this.postID = params.get('id') || '';
     });
     this.postContent = [];
     await this.setPostContent(this.postID);
     this.getResposta();
-    console.log('============');
-    console.log(this.respostas);
   }
 
   getResposta() {
@@ -131,6 +136,42 @@ export class PostComentariosComponent {
       .delete(`http://localhost:3000/reply/delete/${replyId}`)
       .subscribe((data: any) => {
         this.getResposta();
+      });
+  }
+
+  setIsToEdit(replyId: string) {
+    this.respostas.forEach((element: any, index: any) => {
+      if (element._id == replyId && element.isToEdit == false) {
+        this.respostas[index]['isToEdit'] = true;
+      } else {
+        this.respostas[index]['isToEdit'] = false;
+      }
+    });
+  }
+
+  setIsToCancel(replyId: string) {
+    this.respostas.forEach((element: any, index: any) => {
+      if (element._id == replyId) {
+        this.respostas[index]['isToEdit'] = false;
+      }
+    });
+  }
+
+  editReply(replyId: string) {
+    let body = {
+      respostaTexto: this.EditReplyTxt,
+    };
+
+    this.http
+      .put(
+        `http://localhost:3000/reply/update/${replyId}`,
+        JSON.parse(JSON.stringify(body))
+      )
+      .subscribe((data: any) => {
+        console.log(data);
+        this.EditReplyTxt = '';
+        this.getResposta();
+        this.setIsToEdit(replyId);
       });
   }
 }
