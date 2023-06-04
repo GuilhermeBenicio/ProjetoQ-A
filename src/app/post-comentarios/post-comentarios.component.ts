@@ -46,39 +46,15 @@ export class PostComentariosComponent {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe((params) => {
       this.postID = params.get('id') || '';
     });
-
-    const dadosUsuario = this.authservice.getUserInfo();
-    let id = '';
-    for (const [key, item] of Object.entries(dadosUsuario)) {
-      this.personName = item.usuario;
-      this.profileImageUrl = item.urlImg;
-
-      for (let i = 0; i < item.posts.length; i++) {
-        if (item.posts[i]._id === this.postID) {
-          this.postContent = item.posts[i];
-        }
-      }
-    }
+    this.postContent = [];
+    await this.setPostContent(this.postID);
     this.getResposta();
-  }
-
-  setPostContent() {
-    let post: any;
-    this.http
-      .get(`http://localhost:3000/user/benicioo`)
-      .subscribe((data: any) => {
-        for (const [key, item] of Object.entries(data)) {
-          post = item;
-        }
-      });
-
-    setTimeout(() => {
-      this.postContent = post;
-    }, 200);
+    console.log('============');
+    console.log(this.respostas);
   }
 
   getResposta() {
@@ -86,7 +62,6 @@ export class PostComentariosComponent {
     this.http
       .get(`http://localhost:3000/reply/list/${this.postID}`)
       .subscribe((data: any) => {
-        console.log(data);
         if (data.length == 0) {
           this.errorMsg = 'Não há respostas nesta publicação.';
         } else {
@@ -95,12 +70,11 @@ export class PostComentariosComponent {
 
         for (const [key, item] of Object.entries(data)) {
           this.respostas[key] = item;
+          this.getUserAnswerInfo(this.respostas[key].usuario);
+
           setTimeout(() => {
             this.respostas[key]['imgUserAnswer'] = this.userResponse.urlImg;
           }, 200);
-
-          this.getUserAnswerInfo(this.respostas[key].usuario);
-
           this.respostas[key]['criadoEm'] = this.formatDate(
             this.respostas[key]['criadoEm'].toString()
           );
@@ -118,6 +92,20 @@ export class PostComentariosComponent {
       .padStart(2, '0')}/${ano}`;
 
     return dataFormatada;
+  }
+
+  async setPostContent(idPost: string): Promise<void> {
+    try {
+      const post = await this.authservice.getOtherUserInfoByPost(idPost);
+      this.postContent = {
+        _id: post._id,
+        usuario: post.usuario,
+        urlImg: post.urlImg,
+        posts: post.posts[0],
+      };
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   getUserAnswerInfo(username: string) {

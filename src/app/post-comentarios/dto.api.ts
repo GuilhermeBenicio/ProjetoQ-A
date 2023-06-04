@@ -19,9 +19,17 @@ export class Respostas {
 }
 
 export class PostQuestion {
+  _id: string = '';
   pergunta: string = '';
   respostas: Respostas[] = [];
   tags: string[] = [];
   criadoEm: Date = new Date();
   atualizadoEm: Date = new Date();
+}
+
+export class PostQuestionUser {
+  _id: string = '';
+  usuario: string = '';
+  urlImg: string = '';
+  posts: PostQuestion[] = [];
 }
