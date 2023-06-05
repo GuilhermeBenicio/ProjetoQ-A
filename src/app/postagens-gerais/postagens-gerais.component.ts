@@ -18,7 +18,7 @@ export class PostagensGeraisComponent {
   personEmail: string = '';
   errorMsg: string = '';
   postTxt: string = '';
-  replyTxt: string = '';
+  replyTxt: string[] = [];
 
   public pergunta: string = '';
   public posts: any = [];
@@ -73,7 +73,7 @@ export class PostagensGeraisComponent {
                 usuario: element.usuario,
                 urlImg: element.urlImg,
                 post: post,
-                criadoEm: this.formatDate(post.criadoEm.toString()),
+                atualizadoEm: this.formatDate(post.atualizadoEm.toString()),
               });
             });
           });
@@ -94,7 +94,7 @@ export class PostagensGeraisComponent {
     return dataFormatada;
   }
 
-  createReply(postId: string) {
+  createReply(postId: string, index: number) {
     const dadosUsuario = this.authservice.getUserInfo();
     let userName;
 
@@ -105,7 +105,7 @@ export class PostagensGeraisComponent {
 
     let body = {
       usuario: userName,
-      respostaTexto: this.replyTxt,
+      respostaTexto: this.replyTxt[index],
     };
 
     this.http
@@ -114,7 +114,7 @@ export class PostagensGeraisComponent {
         JSON.parse(JSON.stringify(body))
       )
       .subscribe((data: any) => {
-        this.replyTxt = '';
+        this.replyTxt[index] = '';
       });
   }
 }

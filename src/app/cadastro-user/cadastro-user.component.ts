@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-user',
@@ -14,7 +15,7 @@ export class CadastroUserComponent {
   public telefone: String = '';
   public profileImageUrl: String = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   public retornoApi: any = [];
 
   enviarCadastro() {
@@ -40,7 +41,7 @@ export class CadastroUserComponent {
                   message: data.message,
                   class: 'resposta success',
                 };
-                console.log(this.retornoApi[0]);
+                this.router.navigateByUrl('/');
               },
               (err: any) => {
                 this.retornoApi = [];
@@ -48,7 +49,6 @@ export class CadastroUserComponent {
                   message: err.error.message,
                   class: 'resposta error',
                 };
-                console.log(this.retornoApi[0]);
               }
             );
         });

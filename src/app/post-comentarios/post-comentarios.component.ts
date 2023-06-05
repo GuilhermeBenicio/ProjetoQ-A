@@ -79,8 +79,8 @@ export class PostComentariosComponent {
           this.getUserAnswerInfo(this.respostas[key].usuario)
             .then((userResponse: any) => {
               this.respostas[key]['imgUserAnswer'] = userResponse.urlImg;
-              this.respostas[key]['criadoEm'] = this.formatDate(
-                this.respostas[key]['criadoEm'].toString()
+              this.respostas[key]['atualizadoEm'] = this.formatDate(
+                this.respostas[key]['atualizadoEm'].toString()
               );
             })
             .catch((error: any) => {
@@ -111,6 +111,9 @@ export class PostComentariosComponent {
         urlImg: post.urlImg,
         posts: post.posts[0],
       };
+      this.postContent.posts.atualizadoEm = this.formatDate(
+        this.postContent.posts.atualizadoEm
+      );
     } catch (error) {
       console.error(error);
     }

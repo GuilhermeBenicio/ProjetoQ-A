@@ -20,8 +20,6 @@
       </div>
       <div class="btn">
         <a id="publicar" (click)="enviarCadastro();">Cadastrar</a>
-
-        <!-- <a href="#" >Cadastrar</a> -->
       </div>
       <div *ngFor="let resposta of retornoApi">
         <span class={{resposta.class}}>{{resposta.message}}</span>

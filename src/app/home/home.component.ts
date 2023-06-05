@@ -17,7 +17,7 @@ export class HomeComponent {
   personEmail: string = '';
   errorMsg: string = '';
   postTxt: string = '';
-  replyTxt: string = '';
+  replyTxt: string[] = [];
   isToEdit: Boolean = false;
   EditPostTxt: string = '';
 
@@ -127,7 +127,19 @@ export class HomeComponent {
       });
   }
 
-  createReply(postId: string) {
+  formatDate(dataString: string) {
+    const data = new Date(dataString);
+    const dia = data.getDate();
+    const mes = data.getMonth() + 1;
+    const ano = data.getFullYear();
+    const dataFormatada = `${dia.toString().padStart(2, '0')}/${mes
+      .toString()
+      .padStart(2, '0')}/${ano}`;
+
+    return dataFormatada;
+  }
+
+  createReply(postId: string, index: number) {
     const dadosUsuario = this.authservice.getUserInfo();
     let userId;
     let userName;
@@ -139,7 +151,7 @@ export class HomeComponent {
 
     let body = {
       usuario: userName,
-      respostaTexto: this.replyTxt,
+      respostaTexto: this.replyTxt[index],
     };
 
     this.http
@@ -148,7 +160,7 @@ export class HomeComponent {
         JSON.parse(JSON.stringify(body))
       )
       .subscribe((data: any) => {
-        this.replyTxt = '';
+        this.replyTxt[index] = '';
         this.getUserPosts();
       });
   }

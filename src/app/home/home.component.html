@@ -46,7 +46,7 @@
       </form>
     </div>
 
-    <div class="content-post" *ngFor="let post of posts">
+    <div class="content-post" *ngFor="let post of posts; let i = index">
       <div class="btn-excluir-editar">
         <div><img src="../../assets/img/excluir.svg" alt="excluir" width="35" (click)="deletePost(post._id)"></div>
         <div (click)="setIsToEdit(post._id)"><img src="../../assets/img/editar.svg" alt="editar" width="32"></div>
@@ -56,7 +56,7 @@
           <img [src]="profileImageUrl" alt="Foto de perfil" class="imagem-area-post">
           <div class="nome-data">
             <span class="nome-usuario textwhite">{{personName}}</span>
-            <span class="data-postagem">21/05/2023</span>
+            <span class="data-postagem">{{formatDate(post.atualizadoEm).toString()}}</span>
           </div>
         </div>
       </section>
@@ -82,8 +82,8 @@
 
         <div class="answer" *ngIf="!post.isToEdit">
           <form>
-            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt"></textarea>
-            <div class="btn-publicar" (click)="createReply(post._id)">
+            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt[i]"></textarea>
+            <div class="btn-publicar" (click)="createReply(post._id, i)">
               <a>Comentar</a>
             </div>
           </form>

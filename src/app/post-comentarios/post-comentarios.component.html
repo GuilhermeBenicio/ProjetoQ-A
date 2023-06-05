@@ -16,7 +16,7 @@
           <img [src]="postContent.urlImg" alt="Foto de perfil" class="imagem-area-post" />
           <div class="nome-data">
             <span class="nome-usuario textwhite">{{ postContent.usuario }}</span>
-            <span class="data-postagem">21/05/2023</span>
+            <span class="data-postagem">{{ postContent["posts"].atualizadoEm }}</span>
             <p class="textwhite">{{ postContent["posts"].pergunta }}</p>
           </div>
 
@@ -30,7 +30,7 @@
           <img [src]="resposta.imgUserAnswer" alt="Foto de perfil" class="imagem-area-post" />
           <div class="nome-data">
             <span class="nome-usuario textwhite">{{ resposta.usuario }}</span>
-            <span class="data-postagem">{{ resposta.criadoEm }}</span>
+            <span class="data-postagem">{{ resposta.atualizadoEm }}</span>
           </div>
         </div>
       </section>

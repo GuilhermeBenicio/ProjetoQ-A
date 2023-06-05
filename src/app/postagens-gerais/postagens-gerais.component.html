@@ -11,13 +11,13 @@
 <div class="container">
 
   <main class="main">
-    <div class="content-post" *ngFor="let post of posts">
+    <div class="content-post" *ngFor="let post of posts; let i = index">
       <section class="section-header">
         <div class="postagem">
           <img [src]="post.urlImg" alt="Foto de perfil" class="imagem-area-post">
           <div class="nome-data">
             <span class="nome-usuario textwhite">{{post.usuario}}</span>
-            <span class="data-postagem">{{post.criadoEm}}</span>
+            <span class="data-postagem">{{post.atualizadoEm}}</span>
           </div>
         </div>
       </section>
@@ -28,20 +28,15 @@
         </div>
 
         <div class="informacoes-postagem">
-          <div class="botoes-postagem">
-            <img src="../assets/img/like.svg" alt="like" class="img">
-          </div>
-
           <div class="qtn-postagem">
             <a href="#" class="comentario textwhite" routerLink="/comentarios/{{post['post']._id}}">Comentarios</a>
-            <div class="curtidas textwhite"> 323223 Curtidas</div>
           </div>
         </div>
 
         <div class="answer">
           <form>
-            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt"></textarea>
-            <div class="btn-publicar" (click)="createReply(post['post']._id)">
+            <textarea class="textarea textarea-borda" name="text-area-answer" placeholder="Escreva seu comentário" [(ngModel)]="replyTxt[i]"></textarea>
+            <div class="btn-publicar" (click)="createReply(post['post']._id, i)">
               <a>Comentar</a>
             </div>
           </form>

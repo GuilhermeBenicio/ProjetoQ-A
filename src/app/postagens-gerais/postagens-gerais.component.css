@@ -13,6 +13,16 @@
   color: white !important;
 }
 
+.informacoes-postagem {
+  position: relative;
+}
+
+.qtn-postagem {
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+
 /* CONTEUDO */
 
 .content-header,
